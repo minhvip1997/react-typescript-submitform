@@ -1,24 +1,30 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import Form from './components/Form';
+import List from './components/List';
+import './App.css'
+
+
+export interface IState {
+  people:{
+    name: string,
+    age: number,
+    bio: string
+  }[]
+}
 
 function App() {
+  
+
+  const [age,setAge] = useState(25);
+  const [name,setName] = useState("nhat minh");
+  const [inputData, setInputData] = useState({name: "", age: ""});
+  const [size,setSize] = useState<string|number>("Xl");
+  const [people, setPeople] = useState<IState["people"]>([{name: "Nhat minh", age: 25, bio:"coder"}]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='container'>
+      <Form people = {people} setPeople={setPeople}/>
+      <List people = {people}/>
     </div>
   );
 }
